@@ -1,0 +1,21 @@
+# Hugo
+public/
+resources/
+.hugo_build.lock
+.DS_Store
+
+# Screenshots the Claude desktop app saves into working folders
+Claude outputs/
+
+# ---------------------------------------------------------------------------
+# HELD BACK ON PURPOSE — not a build artefact.
+#
+# PLATE 41 is the only document connecting this archive to the 1961 one, and
+# the plan is that it is the last thing published, not the first. This
+# repository is PUBLIC, so leaving the file untracked is what actually keeps
+# it unpublished — a Hugo draft flag would still put the text on GitHub for
+# anyone who opened the repo.
+#
+# To release it: delete these two lines, commit, push. Nothing else changes.
+content/archive/CROSS-REFERENCE/
+# ---------------------------------------------------------------------------
