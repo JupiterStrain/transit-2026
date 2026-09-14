@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+</head>
+<body>
+<div class="banner">{{ .Site.Params.banner }}</div>
+<div class="container">
+{{ block "main" . }}{{ end }}
+<footer class="sitefoot">
+<hr>
+<p>{{ .Site.Params.issuer }}<br>
+INDEX GENERATED AUTOMATICALLY &middot; CONTENTS UNREVIEWED &middot; CITE THE PRIMARY RECORD</p>
+{{ with .Site.Params.channel_url }}
+<p class="mirror">SUMMARY VIDEO OF SELECTED RECORDS &middot;
+<a href="{{ . }}" rel="noopener">{{ $.Site.Params.channel }}</a></p>
+{{ end }}
+</footer>
+</div>
+</body>
+</html>

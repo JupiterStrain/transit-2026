@@ -1,0 +1,24 @@
+baseURL = "https://jupiterstrain.github.io/transit-2026/"
+title = "THE TRANSIT - 2026"
+theme = "transit"
+
+defaultContentLanguage = "en"
+
+[languages]
+  [languages.en]
+    languageCode = "en-us"
+    weight = 1
+
+[params]
+  description = "Survey alerts, observatory circulars, compiled photometry and astrometric solutions relating to object CVIS-DR7-04471."
+  root_label = "CVIS-DR7-04471"
+  banner = "PUBLIC ALERT STREAM — AUTOMATED DISTRIBUTION — CONTENTS UNREVIEWED AND SUBJECT TO WITHDRAWAL"
+  issuer = "CERRO VENTANA OBSERVATORY · DATA MANAGEMENT"
+  # Set these once the channel exists. The footer link is hidden while empty,
+  # so the site does not advertise a channel that is not there yet.
+  channel = ""
+  channel_url = ""
+
+# No taxonomies. This is a file server, not a blog — tag and category pages
+# would be the one thing on the site that gives away that it is a blog.
+[taxonomies]

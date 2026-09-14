@@ -1,0 +1,41 @@
+{{ define "main" }}
+<p class="crumb"><a href="{{ .Site.Home.RelPermalink }}">/{{ .Site.Params.root_label }}</a> /
+{{ with .Parent }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }} /
+{{ with .Params.document_code }}{{ . }}{{ else }}{{ .Title }}{{ end }}.txt</p>
+
+<div class="docmeta">
+<span class="stamp big">{{ .Params.classification | default "UNREVIEWED" }}</span>
+<dl>
+<dt>Document code</dt><dd>{{ .Params.document_code | default "—" }}</dd>
+<dt>Date issued</dt><dd>{{ .Date.Format "2 January 2006" }}</dd>
+<dt>Facility</dt><dd>{{ .Params.facility | default "—" }}</dd>
+<dt>Author</dt><dd>{{ .Params.author | default "—" }}</dd>
+<dt>Distribution</dt><dd>{{ .Params.distribution | default "—" }}</dd>
+</dl>
+</div>
+
+{{/*  These records are preformatted fixed-width bulletins, so the body is
+      emitted raw inside <pre> rather than run through the Markdown renderer,
+      which would collapse the column alignment every table depends on.
+      One document embeds a figure mid-text, so the raw body is split on the
+      image and the halves are emitted either side of it. Documents with no
+      figure take the same path with a single chunk.  */}}
+{{ $raw := .RawContent }}
+{{ $found := findRE `!\[[^\]]*\]\([^)]+\)` $raw 1 }}
+{{ if $found }}
+  {{ $tag := index $found 0 }}
+  {{ $src := replaceRE `!\[[^\]]*\]\(([^)]+)\)` "$1" $tag }}
+  {{ $chunks := split $raw $tag }}
+  <pre class="doc">{{ index $chunks 0 }}</pre>
+  <figure class="plate">
+    <img src="{{ $src | relURL }}" alt="{{ .Params.document_code }}">
+    <figcaption>{{ .Params.document_code }} &middot; PRESENTED AS ISSUED &middot; NO RESCALING</figcaption>
+  </figure>
+  {{ if gt (len $chunks) 1 }}<pre class="doc">{{ index $chunks 1 }}</pre>{{ end }}
+{{ else }}
+  <pre class="doc">{{ $raw }}</pre>
+{{ end }}
+
+<p class="note">End of record.
+{{ with .Parent }}<a href="{{ .RelPermalink }}">Return to directory</a>.{{ end }}</p>
+{{ end }}

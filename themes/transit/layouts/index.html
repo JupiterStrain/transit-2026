@@ -1,0 +1,27 @@
+{{ define "main" }}
+<h1>{{ .Site.Title }}</h1>
+<p class="lede">{{ .Site.Params.description }}</p>
+
+{{ with .Site.GetPage "/archive" }}
+<h2>Index of /{{ $.Site.Params.root_label }}/</h2>
+<div class="listing-wrap">
+<table class="listing">
+<thead>
+<tr><th class="c-name">Name</th><th class="c-count">Files</th><th class="c-class">Status</th></tr>
+</thead>
+<tbody>
+{{ range .Sections.ByWeight }}
+<tr>
+<td class="c-name"><a href="{{ .RelPermalink }}">{{ .Title }}/</a></td>
+<td class="c-count">{{ len .RegularPages }}</td>
+<td class="c-class"><span class="stamp">PUBLIC</span></td>
+</tr>
+{{ end }}
+</tbody>
+</table>
+</div>
+{{ end }}
+
+<p class="note">Directory listing enabled. Records are presented as issued.
+Nothing in this archive has been through peer review.</p>
+{{ end }}
