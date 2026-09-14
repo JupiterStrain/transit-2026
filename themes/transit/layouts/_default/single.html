@@ -28,7 +28,11 @@
   {{ $chunks := split $raw $tag }}
   <pre class="doc">{{ index $chunks 0 }}</pre>
   <figure class="plate">
-    <img src="{{ $src | relURL }}" alt="{{ .Params.document_code }}">
+    {{/*  relURL does NOT prepend the site's sub-path when its input already
+        starts with "/", so "/images/x.png" resolves to the domain root and
+        404s on a project page served from /transit-2026/. Trim the slash
+        first. Building locally against a root baseURL hides this entirely. */}}
+    <img src="{{ (strings.TrimPrefix "/" $src) | relURL }}" alt="{{ .Params.document_code }}">
     <figcaption>{{ .Params.document_code }} &middot; PRESENTED AS ISSUED &middot; NO RESCALING</figcaption>
   </figure>
   {{ if gt (len $chunks) 1 }}<pre class="doc">{{ index $chunks 1 }}</pre>{{ end }}
