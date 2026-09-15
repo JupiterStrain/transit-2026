@@ -40,6 +40,19 @@
   <pre class="doc">{{ $raw }}</pre>
 {{ end }}
 
+{{ with .Params.related_url }}
+{{/*  Styled here rather than in style.css purely so that adding this feature
+      is one file to change. Move it into the stylesheet if it ever gets used
+      by a second layout.  */}}
+<style>
+.xref { margin-top: 1.4rem; font-size: 0.72rem; letter-spacing: 1.1px;
+        text-transform: uppercase; color: var(--institutional-gray); }
+.xref a { color: var(--classified-red); }
+</style>
+<p class="xref">PRIMARY SOURCE &middot;
+<a href="{{ . }}" rel="noopener">{{ $.Params.related_label | default . }}</a></p>
+{{ end }}
+
 <p class="note">End of record.
 {{ with .Parent }}<a href="{{ .RelPermalink }}">Return to directory</a>.{{ end }}</p>
 {{ end }}
