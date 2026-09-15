@@ -13,11 +13,13 @@ defaultContentLanguage = "en"
   description = "Survey alerts, observatory circulars, compiled photometry and astrometric solutions relating to object CVIS-DR7-04471."
   root_label = "CVIS-DR7-04471"
   banner = "PUBLIC ALERT STREAM — AUTOMATED DISTRIBUTION — CONTENTS UNREVIEWED AND SUBJECT TO WITHDRAWAL"
-  issuer = "CERRO VENTANA OBSERVATORY · DATA MANAGEMENT"
-  # Set these once the channel exists. The footer link is hidden while empty,
-  # so the site does not advertise a channel that is not there yet.
-  channel = ""
-  channel_url = ""
+  issuer = "CERRO VENTANA OBSERVATORY &middot; DATA MANAGEMENT"
+  # The footer link is hidden while these are empty, so the site never
+  # advertises a channel that is not there. Note this is the ONLY outward link
+  # on the site besides the primary-source citation on the PLATE 41 record —
+  # the two YouTube channels never link to each other directly.
+  channel = "@TheTransit2026"
+  channel_url = "https://www.youtube.com/@TheTransit2026"
 
 # No taxonomies. This is a file server, not a blog — tag and category pages
 # would be the one thing on the site that gives away that it is a blog.
